@@ -18,7 +18,7 @@ OPTIONS:
 -h, --help              Print this usage information
 -v, --version           Print the ${script_name} version
 
-These are common tashcli commands used in various situations:
+These are common bm commands used in various situations:
     add                 Adds new task
     category            Creates and lists the categories
     delete              Deletes the bookmark
@@ -44,7 +44,7 @@ case "$1" in
     shift
     ;;
   --version | -v)
-    echo "tashcli $(cat ${PWD}/VERSION)"
+    echo "bm $(cat ${PWD}/VERSION)"
     shift
     ;;
   *)

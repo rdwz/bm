@@ -13,13 +13,15 @@ usage() {
     # TODO Handle the other options
     cat <<USAGE_TEXT
 A command-line utility for bookmarks.
+
 Usage: ${script_name} [option] [<argument>]
+
 OPTIONS:
 -h, --help              Print this usage information
 -v, --version           Print the ${script_name} version
 
 These are common bm commands used in various situations:
-    add                 Adds new task
+    add                 Adds new link
     category            Creates and lists the categories
     delete              Deletes the bookmark
     list                Lists the all bookmarks
@@ -41,6 +43,10 @@ case "$1" in
     ;;
   --help | -h)
     usage
+    shift
+    ;;
+  setup)
+    "${PWD}/commands/setup.sh"
     shift
     ;;
   --version | -v)

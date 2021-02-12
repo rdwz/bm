@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+readonly script_name="bm"
+readonly version="0.1.0"
+readonly emoji=📁
+
+usage() {
+
+    # TODO Handle the other options
+    cat <<USAGE_TEXT
+A command-line utility for bookmarks.
+Usage: ${script_name} [option] [<argument>]
+OPTIONS:
+-h, --help              Print this usage information
+-v, --version           Print the ${script_name} version
+
+These are common tashcli commands used in various situations:
+    add                 Adds new task
+    category            Creates and lists the categories
+    delete              Deletes the bookmark
+    list                Lists the all bookmarks
+    remove              Removes the category
+
+For bug reporting and contributions, please see:
+<https://github.com/gozeloglu/bm>
+USAGE_TEXT
+}
+
+case "$1" in 
+  add)
+    "${PWD}/commands/add.sh" "$@"
+    shift
+    ;;
+  list)
+    "${PWD}/commands/list.sh" "$@"
+    shift
+    ;;
+  --help | -h)
+    usage
+    shift
+    ;;
+  --version | -v)
+    echo "tashcli $(cat ${PWD}/VERSION)"
+    shift
+    ;;
+  *)
+    echo "Invalid Command"
+    ;;
+esac
+

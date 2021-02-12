@@ -8,7 +8,6 @@ function error_message() {
 
 function setup() {
   if [[ ! -d ~/.${script_name}/ ]]; then
-    echo "Here"
     if ! mkdir -p ~/.${script_name} ; then
       error_message "Directory could not created"
     else

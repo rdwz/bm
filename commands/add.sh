@@ -26,6 +26,7 @@ For bug reporting and contributions, please see:
 USAGE_TEXT
 }
 
+# Category files are created
 function touch_files() {
   categories=( "$@" )
 
@@ -38,6 +39,7 @@ function touch_files() {
   done
 }
 
+# Link is written on the file(s)
 function write_files() {
   parameters=( "$@" )
   link=( "${parameters[0]}")
@@ -49,6 +51,8 @@ function write_files() {
   done
 }
 
+# Helper function
+# Prints out the categories that saved
 function echo_categories() {
   files=( "$@" )
 

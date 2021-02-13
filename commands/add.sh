@@ -4,6 +4,8 @@ readonly script_name="bm"
 readonly command_name="add"
 readonly bm_path=~/.${script_name}
 
+is_category=false
+
 function usage_add() {
 
     cat<<USAGE_TEXT
@@ -35,8 +37,9 @@ function touch_files() {
     if [[ ! -f ${bm_path}/${category}.txt  ]]; then
       touch ${bm_path}/"${category}.txt"
       echo "✔️ ${category} is created."
-    else 
+    elif $is_category; then
       echo "❌ ${category} is already exist."
+      
     fi
   done
 }
@@ -72,9 +75,7 @@ function add_bm() {
   link=( "${parameters[1]}")
   categories=( "${parameters[@]:2}" )
 
-  echo $link
-  echo ${categories[@]}
-
+  is_category=false
   touch_files ${categories[@]}
   write_files $link ${categories[@]}
 
@@ -89,6 +90,7 @@ function add_bm() {
 function add_category() {
   parameters=( $@ )
   categories=${parameters[@]:2}
+  is_category=true
 
   if (( $# == 2 )); then 
     echo "❌ Missing categories"
@@ -114,8 +116,6 @@ case "$2" in
       echo "$2" >> ${bm_path}/"bm.txt"
       echo "$2 is added ✔️"
       echo_categories "bm.txt"
-
-      echo
       echo "Done"
     else 
       add_bm "$@"

@@ -37,6 +37,10 @@ case "$1" in
     "${PWD}/commands/add.sh" "$@"
     shift
     ;;
+  delete)
+    "${PWD}/commands/delete.sh" "$@"
+    shift
+    ;;
   remove)
     "${PWD}/commands/remove.sh" "$@"
     shift

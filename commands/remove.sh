@@ -74,7 +74,12 @@ case $2 in
     shift
     ;;
   *)
-    remove $@
+    if echo $2 | grep -q "^\-"; then
+      echo "$2: Invalid option"
+      echo "Run 'bm remove --help' to see usage. "
+    else
+      remove $@
+    fi
     shift
     ;;
 esac

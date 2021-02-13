@@ -10,7 +10,7 @@ function usage_add() {
 Adds new link.
 
 Usage: ${script_name} ${command_name} [<your_link>] [<categories>]
-Usage: ${script_name} -h | ${script_name} --help 
+Usage: ${script_name} ${command_name} -h | ${script_name} ${command_name} --help 
 
 Example:
 ${script_name} ${command_name} <link> <category> <category> ...

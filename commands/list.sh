@@ -7,6 +7,7 @@ readonly bm_path=~/.${script_name}
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
 NC='\033[0m'  # No color
 
 function usage_list() {
@@ -15,13 +16,13 @@ function usage_list() {
 List the bookmarks.
 
 Usage: ${script_name} ${command_name} [<options>] [<categories>]
-Usage: ${script_name} ${command_name} <argument> [<options>] [<categories>]
+Usage: ${script_name} ${command_name} [<options>] 
 Usage: ${script_name} ${command_name} -h | ${script_name} ${command_name} --help 
 
 Example:
 ${script_name} ${command_name} -c || ${script_name} ${command_name} --category
-${script_name} ${command_name} <category>
-${script_name} ${command_name} 
+${script_name} ${command_name} -c <category> <category> ...
+${script_name} ${command_name} -h | ${script_name} ${command_name} --help
 
 OPTIONS:
 -c, --category          List the bookmarks by their categories
@@ -44,6 +45,8 @@ function split_path() {
   echo $splitted_category  
 }
 
+# Lists all categories
+# No bookmarks, just the name of categories
 function list_categories() {
   
   if [[ ! -d ~/.${script_name}/ ]]; then
@@ -61,8 +64,37 @@ function list_categories() {
   fi
 }
 
+# Lists the bookmarks by given categories
 function list_by_category() {
-  echo "list by categories"
+  parameters=( $@ )
+  categories=( ${parameters[@]:2} )
+
+  for category in ${categories[@]}
+  do
+    echo $category
+    echo -e "${YELLOW}---------------------------${NC}"
+    if [[ ! -f ${bm_path}/${category}.txt ]]; then
+      echo "❌ $category : There is no such a category"
+    else
+
+      local i=1
+      file="${bm_path}/${category}.txt"
+      while read line
+      do
+
+        # check empty lines
+        if [ -z $line ]; then
+          continue
+        fi
+
+        echo -e "${CYAN}#$i${NC} $line"
+        (( i+= 1))
+      done < "$file"
+      (( i-=1 ))
+      echo -e "${GREEN}Total bookmarks: $i${NC}"
+      echo
+    fi
+  done
 }
 
 function list() {
@@ -73,8 +105,7 @@ function list() {
       if (( $# == 2 )); then
         list_categories
       else 
-        echo $#
-        list_by_category
+        list_by_category $@
       fi
       shift
       ;;

@@ -17,4 +17,5 @@ $ ./bm add www.github.com Software CS   # Saves the link on "Software" and "CS" 
 $ ./bm add --category Software CS Reading Videos    # Adds new categories 
 $ ./bm list --category  # lists all categories
 $ ./bm list --category CS   # lists all bookmarks under given category
+$ ./bm list -c CS Reading Videos    # lists all bookmarks under given categories
 ```

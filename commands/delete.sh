@@ -40,7 +40,6 @@ function delete_default() {
   for id in ${bm_ids[@]}
   do 
     if (( $id > $bookmark_count || $id < 1 )); then
-     # echo "#$id There is no such a bookmark ❌"
       continue
     fi
 
@@ -65,9 +64,60 @@ function delete_default() {
   
 }
 
+# Deletes the bookmark by given category
 function delete() {
-  parameters=$@
-  echo ${parameters[@]}
+  parameters=( $@ )
+  category=${parameters[2]}
+  bm_ids=${parameters[@]:3}
+
+  local file="${bm_path}/${category}.txt"
+
+  if [[ ! -f $file ]]; then 
+    echo "❌ There is no such category."
+    exit 1
+  fi 
+  re='^[+-]?[0-9]+([.][0-9]+)?$'
+  local bm_count="$(wc -l < "$file")"
+  local line_str=""
+  declare -a bookmarks
+  
+  for id in ${bm_ids[@]}
+  do 
+    # check id is number or not
+    if ! [[ $id =~ $re ]]; then
+      continue
+    fi 
+    
+    # check invalid bookmark id
+    if (( $id > $bm_count || $id < 1 )); then 
+      continue
+    fi
+
+    local bookmark="$(sed "${id}!d" < "$file")"
+    bookmarks+=( ${bookmark} )
+    line_str+="${id}d;"
+  done 
+
+  local i=0
+  for id in ${bm_ids[@]}
+  do 
+
+    if ! [[ $id =~ $re ]]; then
+      echo "'$id' is not a number ❓"
+      continue
+    fi 
+
+    if (( $id > $bm_count || $id < 1 )); then
+      echo "#$id There is no such a bookmark ❌"
+      continue
+    fi 
+
+    echo "#$id '${bookmarks[i]}' deleted ✔️"
+    (( i+= 1 ))
+  done 
+
+  # Delete lines
+  sed -i "${line_str}" $file
 }
 
 case $2 in 

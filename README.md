@@ -21,6 +21,7 @@ $ ./bm list -c CS Reading Videos    # lists all bookmarks under given categories
 $ ./bm remove Reading Videos    # Remove the given categories
 $ ./bm remove --force Reading Videos    # Remove the given categories even if they are not empty
 $ ./bm delete 1 3 4     # Delete the given bookmark ids in default category, bm
+$ ./bm delete -c Reading 1 4 5  # Delete the given bookmark ids by given category
 ```
 
 # LICENSE

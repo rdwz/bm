@@ -110,8 +110,9 @@ function list() {
       shift
       ;;
     *)
-      if (( $# == 1 )); then 
-        usage_list
+      if (( $# == 1 )); then
+        default="bm"
+        list_by_category $@ "-c" $default
       else 
         echo "Invalid command."
         echo "See '${script_name} ${command_name} --help'."

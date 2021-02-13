@@ -24,6 +24,10 @@ $ ./bm delete 1 3 4     # Delete the given bookmark ids in default category, bm
 $ ./bm delete -c Reading 1 4 5  # Delete the given bookmark ids by given category
 ```
 
+## Demo 
+
+![bm demo](img/demo.gif)
+
 # LICENSE
 
 [MIT](./LICENSE)

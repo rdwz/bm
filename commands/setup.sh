@@ -11,7 +11,7 @@ function setup() {
     if ! mkdir -p ~/.${script_name} ; then
       error_message "Directory could not created"
     else
-      echo "Directory is created successfully."
+      echo "✔️ Directory is created successfully."
     fi
   else
     echo "You already created directory"
@@ -19,7 +19,7 @@ function setup() {
 
   if [[ ! -f ~/.${script_name}/bm.txt ]]; then
     touch ~/.${script_name}/bm.txt
-    echo "Created bm.txt"
+    echo "✔️ Created bm-default category."
   else
     # TODO Can be refactored this part
     while true; do

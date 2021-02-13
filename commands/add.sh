@@ -93,7 +93,9 @@ case "$2" in
     shift
     ;;
   *)
-    if (( $# == 2 )); then
+    if (( $# == 1 )); then  
+      usage_add 
+    elif (( $# == 2 )); then
       echo "$2" >> ${bm_path}/"bm.txt"
       echo "$2 is added ✔️"
       echo_categories "bm.txt"

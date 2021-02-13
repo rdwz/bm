@@ -110,7 +110,12 @@ function list() {
       shift
       ;;
     *)
-      echo "Invalid command."
+      if (( $# == 1 )); then 
+        usage_list
+      else 
+        echo "Invalid command."
+        echo "See '${script_name} ${command_name} --help'."
+      fi 
       shift
       ;;
   esac

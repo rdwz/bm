@@ -132,8 +132,9 @@ case $2 in
   *)
     if echo $2 | grep -q "^\-"; then
       echo "$2: Invalid option"
+      echo "See '${script_name} ${command_name} --help'."
     elif (( $# == 1 ));then
-      echo "Less argument. Need to specify bookmark id."
+      usage_delete
     else 
       delete_default $@
     fi

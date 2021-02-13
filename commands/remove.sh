@@ -74,7 +74,9 @@ case $2 in
     shift
     ;;
   *)
-    if echo $2 | grep -q "^\-"; then
+    if (( $# == 1 )); then 
+      usage_remove
+    elif echo $2 | grep -q "^\-"; then
       echo "$2: Invalid option"
       echo "Run 'bm remove --help' to see usage. "
     else

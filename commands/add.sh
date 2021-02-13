@@ -34,7 +34,9 @@ function touch_files() {
   do
     if [[ ! -f ${bm_path}/${category}.txt  ]]; then
       touch ${bm_path}/"${category}.txt"
-      echo "✔️📁 ${bm_path}/${category}.txt is created."
+      echo "✔️ ${category} is created."
+    else 
+      echo "❌ ${category} is already exist."
     fi
   done
 }
@@ -84,12 +86,25 @@ function add_bm() {
 
 }
 
+function add_category() {
+  parameters=( $@ )
+  categories=${parameters[@]:2}
+
+  if (( $# == 2 )); then 
+    echo "❌ Missing categories"
+    exit 1
+  fi 
+  
+  touch_files ${categories}  
+}
+
 case "$2" in 
   --help | -h)
     usage_add
     shift
     ;;
   --category | -c)
+    add_category $@
     shift
     ;;
   *)

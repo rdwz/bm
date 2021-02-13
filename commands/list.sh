@@ -49,13 +49,14 @@ function list_categories() {
   if [[ ! -d ~/.${script_name}/ ]]; then
     echo "You did not setup."
   else 
+    i=0
     echo -e "${YELLOW}Categories:${NC}"
     for c in "${bm_path}"/*
     do
       category_name=$(split_path $c)
       bm_count=`cat ${c} | wc -l`
-      echo -e "${YELLOW}${category_name}:${NC} $bm_count bookmarks"
-      #echo $category_name
+      echo -e "#$i ${YELLOW}${category_name}:${NC} $bm_count bookmarks"
+      (( i+= 1))
     done
   fi
 }

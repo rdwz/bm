@@ -1,6 +1,6 @@
 # bm
 ![LICENSE](https://img.shields.io/badge/license-MIT-green)
-![Proudly written in Bash](https://img.shields.io/badge/written%20in-bash-ff69b4.svg)
+![Proudly written in Shell](https://img.shields.io/badge/written%20in-shell-pink)
 ![VERSION](https://img.shields.io/badge/version-0.1.0-blue)
 
 ![](./img/logo.jpg)
@@ -11,6 +11,21 @@
 ## Motivation
 
 I always use terminal while making development. It stays open everytime. I compile, run, test the code or commiting the changes on GitHub on the terminal. In short, I try to do all my jobs while coding on the terminal. Again, due to my personal characteristics, I want to control my jobs from one place if it is possible. I mean I do not like to work with lots of different tools. I try to manage all stuff from one or two applications/tools. I know there are different tools or ways to manage bookmarks, but I do not like using any other tools/applications except the necessary ones like IDE, terminal. That's why I wanted to build a CLI tool that manages the bookmarks. Also, the minor motivation was applying the **Bash** knowledge to real-world project. 
+
+## Run
+
+```shell
+$ git clone git@github.com:gozeloglu/bm.git     # Clone the repository
+$ cd bm/    # Change the directory
+$ ./bm --help   # Make sure that script is executable
+```
+
+If you get an error when you run the script, change the mode as follow:
+
+```shell
+$ chmod +x bm
+```
+First, you need to run `setup` command. It creates the directory under your `~` directory and default category file.
 
 ## Example
 
@@ -49,6 +64,12 @@ You can enter multiple category or id in commands. **bm** handles all of them. T
 ## Contribution
 
 Contributions are welcome. But, the project is still under development by me. That's why I may not accept the pull requests from you, but we can discuss in issues if you open issue.
+
+## What is next?
+
+- [ ] Migrate to database or cloud.
+- [ ] Code refactoring for each file.
+- [ ] Enable to use in system-wide.
 
 # LICENSE
 
